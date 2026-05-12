@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link href="https://fonts.googleapis.com/css2?family=Mynerve&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sunshiney&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Peralta&display=swap" rel="stylesheet">
+<title>Activity 7 - Master Portal</title>
+<style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:'Trebuchet MS', Arial, sans-serif; background-color: #222; color: #fff; }
+    
+    .page { display: none; width: 100%; min-height: 90vh; padding: 40px 20px; }
+    .active-page { display: flex; flex-direction: column; justify-content: center; align-items: center; }
+
+    /* PAGE 1: LOGIN (ACT 6 Integration) */
+    #page1 { background-image: url("PNGS/pink anime flowers.gif"); background-size: cover; background-position: center; }
+    
+    /* PAGE 2: HERO DASHBOARD (ACT 5 Integration) */
+    #page2 { background: #f8dce2 color: black; }
+    
+    /* PAGE 3: AUDIO SYSTEM (ACT 4 Integration) */
+    #page3 { background-image:url("Pink wallpapers.jpg"); background-size:cover; }
+    
+    /* PAGE 4: HOVER BUTTON MATRIX (ACT 3 Integration) */
+    #page4 { background-image:url("killthemwithcuteness.gif"); background-size:cover; }
+
+    /* PAGE 5: STATIC BUTTON MATRIX (ACT 2 Integration) */
+    #page5 { background-image:url("gif2.gif"); background-size:cover; }
+
+    /* Reuse reusable modular classes across pages safely */
+    .master-card { background: rgba(255, 79, 161, 0.9); border: 2px solid #fcfc89; border-radius: 25px; padding: 30px; width: 600px; max-width: 95%; color: white; }
+    .btn-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; width: 80%; max-width: 800px; margin: 20px 0; }
+    .styled-btn { padding: 15px; font-weight: bold; cursor: pointer; border: none; border-radius: 8px; transition: 0.2s; }
+    
+    /* Global Control Bar Footer */
+    .pagination-container {
+        position: fixed; bottom: 0; left: 0; width: 100%;
+        background: #111; padding: 15px; display: flex; justify-content: center; align-items: center; gap: 15px; z-index: 9999;
+    }
+    .pagination-container button {
+        padding: 10px 16px; background: #ff4f9b; color: white; border: none; font-weight: bold; cursor: pointer; border-radius: 4px;
+    }
+    .pagination-container button.active { background: white; color: #ff4f9b; border: 2px solid #ff4f9b; }
+</style>
+</head>
+<body>
+
+  <div id="page1" class="page active-page">
+     <div class="master-card">
+         <h2 style="font-family: 'Peralta'; text-align:center;">PORTAL LOGIN</h2>
+         <p style="text-align: center; margin: 10px;">Please authenticate to access the experimental layout index.</p>
+         <button class="styled-btn" style="width: 100%; background: #fcfc89; color: black;" onclick="showPage(2)">Bypass Login Securely</button>
+     </div>
+  </div>
+
+  <div id="page2" class="page">
+      <h1 style="font-family: 'Peralta'; color: #ff4d7d;">DASHBOARD MATRIX</h1>
+      <p>Welcome to your centralized components view layer.</p>
+  </div>
+
+  <div id="page3" class="page">
+      <div class="master-card" style="background: linear-gradient(to bottom, #fff1f8, #ff98cb); color: black; border-radius: 50px; text-align: center;">
+          <h3>Now Playing Studio</h3>
+          <h1 style="color: #d63b84; margin: 15px 0;">Still Love You</h1>
+          <audio id="audio" src="song.mp3"></audio>
+          <button id="playButton" class="styled-btn" style="background: white; border-radius: 50%; width: 60px; height: 60px; font-size: 20px; color: #ff4fa1;">▶</button>
+          <div style="margin-top: 20px;">
+              <input type="range" id="volumeSlider" min="0" max="1" step="0.1" value="0.5" style="width: 80%;">
+          </div>
+      </div>
+  </div>
+
+  <div id="page4" class="page">
+      <h2 style="font-family: 'Peralta'; margin-bottom: 20px;">INTERACTIVE ACTIONS (ACT 3)</h2>
+      <div class="btn-grid">
+          <button class="styled-btn" style="background: black; color: white; transition: 0.3s;" onmouseover="this.style.opacity=0.6" onmouseout="this.style.opacity=1">Uber</button>
+          <button class="styled-btn" style="background: #ffd814; color: black;" onmouseover="this.style.background='#b1a00b'" onmouseout="this.style.background='#ffd814'">Amazon</button>
+          <button class="styled-btn" style="background: #2ea44f; color: white;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">GitHub</button>
+      </div>
+  </div>
+
+  <div id="page5" class="page">
+      <h2 style="font-family: 'Peralta'; margin-bottom: 20px;">STATIC ACTIONS INDEX (ACT 2)</h2>
+      <div class="btn-grid">
+          <button class="styled-btn" style="background: black; color: white;">Uber (Static)</button>
+          <button class="styled-btn" style="background: #ffd814; color: black;">Amazon (Static)</button>
+          <button class="styled-btn" style="background: #2ea44f; color: white;">GitHub (Static)</button>
+      </div>
+  </div>
+
+  <div class="pagination-container">
+      <button onclick="navigate(-1)">⏮ Prev</button>
+      <div id="pageNumbers" style="display: inline-flex; gap: 8px;"></div>
+      <button onclick="navigate(1)">Next ⏭</button>
+  </div>
+
+<script>
+    let currentPage = 1;
+    const totalPages = 5;
+
+    function showPage(pageNumber) {
+        if(pageNumber < 1 || pageNumber > totalPages) return;
+        currentPage = pageNumber;
+        
+        // Hide all pages
+        for(let i = 1; i <= totalPages; i++) {
+            document.getElementById('page' + i).classList.remove('active-page');
+        }
+        // Show current page
+        document.getElementById('page' + currentPage).classList.add('active-page');
+        renderPagination();
+    }
+
+    function navigate(direction) {
+        showPage(currentPage + direction);
+    }
+
+    function renderPagination() {
+        const container = document.getElementById('pageNumbers');
+        container.innerHTML = '';
+        for(let i = 1; i <= totalPages; i++) {
+            const btn = document.createElement('button');
+            btn.innerText = i;
+            if(i === currentPage) btn.classList.add('active');
+            btn.onclick = () => showPage(i);
+            container.appendChild(btn);
+        }
+    }
+
+    // Audio Engine Handling Code Integration
+    const audio = document.getElementById("audio");
+    const playButton = document.getElementById("playButton");
+    const volumeSlider = document.getElementById("volumeSlider");
+    let isPlaying = false;
+
+    playButton.addEventListener("click", () => {
+        if(isPlaying){
+            audio.pause();
+            playButton.innerHTML = "▶";
+        } else {
+            audio.play().catch(() => console.log("Add valid sound target path to test live media playbacks."));
+            playButton.innerHTML = "❚❚";
+        }
+        isPlaying = !isPlaying;
+    });
+
+    volumeSlider.addEventListener("input", () => {
+        audio.volume = volumeSlider.value;
+    });
+
+    // Fire Initial Pagination Element Generation
+    renderPagination();
+</script>
+</body>
+</html>

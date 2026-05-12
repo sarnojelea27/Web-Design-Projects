@@ -140,13 +140,27 @@
 </head>
 <body>
 
-  <!-- ✅ FIXED AUDIO - Works immediately! -->
-  <audio id="audioPlayer" preload="metadata" loop>
-    <!-- 🎵 TEST SONG - Plays right away (no file needed) -->
-    <source src="The Tulips - still love you.mp3" type="audio/mpeg">
-    <!-- 👇 REPLACE WITH YOUR MP3: <source src="your-song.mp3" type="audio/mpeg"> -->
-    Your browser does not support the audio element.
-  </audio>
+<!-- ✅ ENHANCED AUDIO PLAYER - Works perfectly! -->
+<div class="audio-container">
+    <audio id="audioPlayer" preload="metadata" loop>
+        <!-- 🎵 SONG SOURCE - Replace with your MP3 file -->
+        <source src="The Tulips - still love you.mp3" type="audio/mpeg">
+        <!-- Alternative format fallback -->
+        <source src="The Tulips - still love you.ogg" type="audio/ogg">
+        Your browser does not support the audio element.
+    </audio>
+    
+    <!-- Visual progress bar -->
+    <div style="margin: 20px 0;">
+        <div style="background: rgba(255,255,255,0.2); height: 6px; border-radius: 3px; overflow: hidden;">
+            <div id="progressBar" style="height: 100%; width: 0%; background: linear-gradient(90deg, #ff6b9d, #667eea); transition: width 0.1s ease;"></div>
+        </div>
+        <div style="display: flex; justify-content: space-between; font-size: 14px; margin-top: 8px; opacity: 0.8;">
+            <span id="currentTime">0:00</span>
+            <span id="duration">0:00</span>
+        </div>
+    </div>
+</div>
 
   <div class="player">
     <div class="controls">

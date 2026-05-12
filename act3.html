@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link href="https://fonts.googleapis.com/css2?family=Mynerve&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Sunshiney&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Peralta&display=swap" rel="stylesheet">
+  <title>ACTIVITY 3</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    h1 {
+      position: relative;
+      top: 2px;
+      font-family: "Peralta", serif;
+      font-size: 60px;
+      color: rgb(255, 255, 255);
+      font-weight: bold;
+      -webkit-text-stroke: 1px rgb(255, 99, 146);
+      text-shadow: 1px 1px 9px rgb(252, 249, 65);
+    }
+    body {
+      font-family: 'Lucida Sans', sans-serif;
+      color: rgb(150, 15, 55);
+      padding: 20px 28px;
+      min-height: 100vh;
+      background-image: url("https://i.pinimg.com/originals/40/17/e1/4017e15e28f0a31df6b77bd486f1d332.gif");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .three-space {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 40px;
+      margin: 40px 0;
+    }
+    .two-space {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin: 50px 0;
+    }
+    .btn-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .Uber-button {
+      background-color: rgb(0, 0, 0);
+      color: white;
+      padding: 14px 26px;
+      cursor: pointer;
+      transition: opacity 0.3s, background-color 0.3s;
+      border: 2px solid white;
+    }
+    .Uber-button:hover {
+      opacity: 0.7;
+      background-color: gray;
+    }
+    .Amazon-button {
+      background-color: rgb(255,216,20);
+      color: rgb(0, 0, 0);
+      padding: 12px 50px;
+      border-radius: 25px;
+      cursor: pointer;
+      border: none;
+      transition: opacity 0.3s, background-color 0.3s;
+    }
+    .Amazon-button:hover {
+      opacity: 0.7;
+      background-color: rgb(177, 160, 11);
+    }
+    .GitHub-button {
+      background-color: rgb(46,164,79);
+      color: rgb(255, 255, 255);
+      padding: 12px 20px;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      border: none;
+      transition: opacity 0.3s, background-color 0.3s;
+    }
+    .GitHub-button:hover {
+      opacity: 0.7;
+      background-color: rgb(47, 95, 35);
+    }
+    .Bootstrap-get {
+      background-color: rgb(121,82,179);
+      color: rgb(255, 255, 255);
+      padding: 12px 20px;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      border: none;
+      transition: opacity 0.3s, background-color 0.3s;
+    }
+    .Bootstrap-get:hover {
+      opacity: 0.7;
+      background-color: rgb(50, 9, 58);
+    }
+    .Bootstrap-download {
+      background-color: rgb(108,117,125);
+      color: rgb(255, 255, 255);
+      border: 2px solid rgb(121,82,179);
+      padding: 12px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: opacity 0.3s, background-color 0.3s;
+    }
+    .Bootstrap-download:hover {
+      opacity: 0.7;
+      background-color: rgb(70,75,80);
+    }
+    .LinkedIn-apply {
+      background-color: rgb(10,102,194);
+      color: white;
+      padding: 14px 30px;
+      border-radius: 25px;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .LinkedIn-apply:hover {
+      background-color: rgb(5, 70, 140);
+    }
+    .LinkedIn-save {
+      background-color: white;
+      color: rgb(10,102,194);
+      border: 2px solid rgb(10,102,194);
+      padding: 12px 20px;
+      border-radius: 25px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s, border-width 0.1s;
+    }
+    .LinkedIn-save:hover {
+      background-color: rgb(230, 240, 255);
+      border-width: 3px;
+    }
+    .pagination {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      margin-top: 40px;
+    }
+    .pagination button {
+      border: none;
+      padding: 12px 16px;
+      cursor: pointer;
+      font-weight: bold;
+      background: linear-gradient(145deg, #ffffff, #f84291);
+      color: white;
+      box-shadow: 0 5px 10px rgba(255,79,155,0.3);
+      transition: 0.1s;
+    }
+    .pagination button:hover {
+      transform: scale(1.1);
+      background: #f38db1;
+    }
+    .pagination .active {
+      background: #ffc0dc;
+      color: #ff4f9b;
+      border: 1px solid #ff4f9b;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>✮ ⋆ ˚｡𖦹 ⋆｡°✩ ACTIVITY 3 ✮ ⋆ ˚｡𖦹 ⋆｡°✩</h1>
+  </div>
+
+  <div class="container">
+    <div class="three-space">
+      <div class="btn-wrapper"><button class="Uber-button">Uber</button></div>
+      <div class="btn-wrapper"><button class="Amazon-button">Add to Cart</button></div>
+      <div class="btn-wrapper"><button class="GitHub-button">Sign up</button></div>
+    </div>
+
+    <div class="two-space">
+      <div class="btn-wrapper"><button class="Bootstrap-get">Get started</button></div>
+      <div class="btn-wrapper"><button class="Bootstrap-download">Download</button></div>
+    </div>
+
+    <div class="two-space">
+      <div class="btn-wrapper"><button class="LinkedIn-apply">Apply on company website</button></div>
+      <div class="btn-wrapper"><button class="LinkedIn-save">Save</button></div>
+    </div>
+  </div>
+
+  <div class="pagination">
+    <a href="finalACT2.html"><button>Previous</button></a>
+    <button class="active">3</button>
+    <a href="finalACT4.html"><button>Next</button></a>
+  </div>
+</body>
+</html>

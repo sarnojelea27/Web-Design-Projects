@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link href="https://fonts.googleapis.com/css2?family=Mynerve&family=Sunshiney&family=Peralta&display=swap" rel="stylesheet">
+  
+  <link rel="icon" type="image/png" href="favicon.png">
+  
+  <title>Master Hub - Combined Activities</title>
+  
+  <style>
+    /* Global Reset Rules */
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; 
+    }
+
+    /* Core Pagination Structure (Adopted from Activity 7) */
+    body {
+      font-family: 'Trebuchet MS', Arial, sans-serif;
+      background: #1a0033;
+      color: #fff;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+    
+    .page { 
+      display: none; 
+      width: 100%; 
+      min-height: 100vh; 
+      padding: 60px 20px 120px 20px; /* space at bottom to accommodate fixed pagination panel */
+      position: relative;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .active-page { 
+      display: flex; 
+    }
+
+    /* -------------------------------------------------------------------------
+       PAGE 1: ACTIVITY 6 - LOGIN PAGE STYLES
+    ------------------------------------------------------------------------- */
+    #page1 {
+      background-image: url("https://i.pinimg.com/originals/03/c2/ff/03c2ff2e06cd871731d8e96fd1113b34.gif");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      font-family: "Mynerve", cursive;
+    }
+    .blog-card {
+      width: 650px;
+      max-width: 90%;
+      background: rgba(255, 79, 161, 0.8);
+      border: 2px solid rgb(252, 252, 137);
+      border-radius: 35px;
+      padding: 30px;
+    }
+    .stars {
+      text-align: center;
+      font-size: 20px;
+      color: rgb(252, 252, 137);
+      margin-bottom: 10px;
+    }
+    .page1-title {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .page1-title .small-text {
+      display: block;
+      font-size: 32px;
+      font-family: "Mynerve", cursive;
+      color: rgb(252, 252, 137);
+      text-shadow: 2px 2px 0px black;
+    }
+    .page1-title .big-text {
+      display: block;
+      font-size: 55px;
+      font-family: "Peralta", serif;
+      color: rgb(255, 255, 255);
+      -webkit-text-stroke: 1px rgb(155, 219, 245);
+      text-shadow: 3px 3px 0px black;
+    }
+    .login-content {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .image-box {
+      flex: 1;
+      min-width: 200px;
+      height: 210px;
+      border: 5px solid rgb(252, 252, 137);
+      border-radius: 15px;
+      overflow: hidden;
+      background-image: url("https://i.pinimg.com/originals/9b/d8/90/9bd89050c9b149dfda7bc46e9782fd04.gif");
+      background-size: cover;
+    }
+    .image-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .login-section {
+      flex: 1;
+      min-width: 240px;
+    }
+    .input-box {
+      display: flex;
+      align-items: center;
+      background: rgb(252, 252, 137);
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 10px;
+    }
+    .input-box input {
+      background: transparent;
+      border: none;
+      outline: none;
+      width: 100%;
+      font-family: "Mynerve", cursive;
+      font-size: 18px;
+      color: #000;
+    }
+    .remember-forgot {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      color: rgb(252, 252, 137);
+      margin-bottom: 15px;
+    }
+    .remember-forgot a {
+      color: rgb(252, 252, 137);
+      text-decoration: none;
+    }
+    .login-btn {
+      width: 100%;
+      background: rgb(252, 252, 137);
+      border: none;
+      padding: 10px;
+      border-radius: 10px;
+      font-family: "Mynerve", cursive;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    /* -------------------------------------------------------------------------
+       PAGE 2: ACTIVITY 5 - HERO PAGE STYLES
+    ------------------------------------------------------------------------- */
+    #page2 {
+      background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+      background-size: cover;
+    }
+    .box {
+      width: 95%;
+      max-width: 1200px;
+      background: rgba(248, 220, 226, 0.95);
+      backdrop-filter: blur(10px);
+      border: 3px solid #000000;
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 30px;
+      gap: 40px;
+      background: linear-gradient(135deg, rgba(255,77,125,0.9), rgba(255,105,180,0.9));
+      text-align: center;
+    }
+    .left {
+      width: 100%;
+      max-width: 800px;
+    }
+    .left h1 {
+      font-family: "Peralta", serif;
+      font-size: clamp(32px, 6vw, 55px);
+      line-height: 1.1;
+      letter-spacing: 4px;
+      color: #fff;
+      text-shadow: 3px 3px 0px #000, 1px 1px 0px #ff4d7d;
+      margin-bottom: 20px;
+    }
+    .arc-text {
+      height: 60px;
+      margin: 10px 0;
+      color: #fff;
+      font-size: 28px;
+      font-family: "Sunshiney", cursive;
+      font-weight: bold;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+    }
+    .left p {
+      color: #fff;
+      margin-bottom: 25px;
+      font-family: "Mynerve", cursive;
+      font-weight: bold;
+      font-size: 18px;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+      line-height: 1.5;
+    }
+    .hero-btn-group {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .hero-btn-group button {
+      background: linear-gradient(45deg, #ff6b9d, #ff8fab);
+      color: #fff;
+      border: 3px solid #000;
+      padding: 12px 25px;
+      font-family: "Mynerve", cursive;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 30px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    }
+    .right-grid {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      max-width: 900px;
+    }
+    .right-grid img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border: 3px solid #000;
+      border-radius: 10px;
+    }
+
+    /* -------------------------------------------------------------------------
+       PAGE 3: ACTIVITY 4 - HTML IMAGE, FAVICON AND AUDIO PLAYER
+    ------------------------------------------------------------------------- */
+    #page3 {
+      background-image: url("https://i.pinimg.com/736x/db/f7/bc/dbf7bc7d3deba7f55c6dff39d146d185.jpg");
+      background-size: cover;
+      background-position: center;
+    }
+    .player {
+      width: 720px;
+      max-width: 95%;
+      padding: 30px;
+      border-radius: 100px;
+      background-image: url("https://i.pinimg.com/originals/43/77/7a/43777aabdfd50ec9184e63cb07919f62.gif");
+      background-size: cover;
+      border: 4px solid #ff9ec9;
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      box-shadow: 0 15px 35px rgba(255,105,180,0.35);
+    }
+    .player-controls {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: linear-gradient(to bottom, #fff0f7, #ffb6d6);
+      border: 6px solid #ffe6f2;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .audio-play-btn {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      background: linear-gradient(to bottom, #fff5fa, #fce2ee);
+      color: #ff4fa1;
+      font-size: 28px;
+      font-weight: bold;
+    }
+    .player-screen {
+      flex: 1;
+      padding: 25px;
+      border-radius: 40px;
+      background: linear-gradient(to bottom, #fff1f8, #ffcce5, #ff98cb);
+    }
+    .song-title {
+      text-align: center;
+      font-size: 32px;
+      color: #d63b84;
+    }
+    .artist {
+      text-align: center;
+      color: #ff4fa1;
+      font-size: 16px;
+    }
+    .progress-container { margin-top: 20px; }
+    .progress-bg {
+      width: 100%;
+      height: 12px;
+      background: #ffeaf4;
+      border-radius: 6px;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .progress-bar { width: 0%; height: 100%; background: linear-gradient(to right, #ff62c0, #ff2d96); }
+    .volume-container {
+      margin-top: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .volume-slider { width: 100%; accent-color: #ff4fa1; cursor: pointer; }
+
+    /* -------------------------------------------------------------------------
+       PAGE 4 & 5: ACTIVITIES 2 & 3 - CSS BASIC / HOVER & TRANSITION
+    ------------------------------------------------------------------------- */
+    #page4 {
+      background-image: url("https://i.pinimg.com/originals/10/47/99/1047993b3e830e3e79f765a60829d61c.gif");
+      background-size: cover;
+    }
+    #page5 {
+      background-image: url("https://i.pinimg.com/originals/40/17/e1/4017e15e28f0a31df6b77bd486f1d332.gif");
+      background-size: cover;
+    }
+    .act-header h1 {
+      font-family: "Peralta", serif;
+      font-size: clamp(30px, 5vw, 50px);
+      color: rgb(255, 255, 255);
+      text-align: center;
+      margin-bottom: 20px;
+      -webkit-text-stroke: 1px rgb(255, 99, 146);
+      text-shadow: 1px 1px 9px rgb(252, 249, 65);
+    }
+    .grid-container {
+      width: 100%;
+      max-width: 1000px;
+      padding: 20px;
+    }
+    .three-space {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 30px;
+      margin: 20px 0;
+    }
+    .two-space {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px;
+      margin: 30px 0;
+    }
+    .btn-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Activity 2 Base Button Styles */
+    #page4 .Uber-button { background-color: rgb(0,0,0); color: white; border: 2px solid white; padding: 14px 26px; font-size: 16px; }
+    #page4 .Amazon-button { background-color: rgb(255,216,20); color: black; padding: 12px 50px; border-radius: 25px; border: none; font-size: 16px; }
+    #page4 .GitHub-button { background-color: rgb(46,164,79); color: white; padding: 12px 20px; border-radius: 6px; font-weight: bold; border: none; font-size: 16px; }
+    #page4 .Bootstrap-get { background-color: rgb(121,82,179); color: white; padding: 12px 20px; border-radius: 6px; font-weight: bold; border: none; font-size: 16px; }
+    #page4 .Bootstrap-download { background-color: rgb(108,117,125); color: white; border: 2px solid rgb(121,82,179); padding: 12px 20px; border-radius: 5px; font-weight: bold; font-size: 16px; }
+
+    /* Activity 3 Hover, Shadow & Transitions Applied */
+    #page5 .Uber-button {
+      background-color: rgb(0, 0, 0); color: white; padding: 14px 26px; border: 2px solid white; font-size: 16px;
+      cursor: pointer; transition: opacity 0.3s, background-color 0.3s;
+    }
+    #page5 .Uber-button:hover { opacity: 0.7; background-color: gray; box-shadow: 0px 5px 15px rgba(0,0,0,0.4); }
+
+    #page5 .Amazon-button {
+      background-color: rgb(255,216,20); color: black; padding: 12px 50px; border-radius: 25px; border: none; font-size: 16px;
+      cursor: pointer; transition: opacity 0.3s, background-color 0.3s;
+    }
+    #page5 .Amazon-button:hover { opacity: 0.7; background-color: rgb(177, 160, 11); box-shadow: 0px 5px 15px rgba(255,216,20,0.4); }
+
+    #page5 .GitHub-button {
+      background-color: rgb(46,164,79); color: white; padding: 12px 20px; border-radius: 6px; font-weight: bold; border: none; font-size: 16px;
+      cursor: pointer; transition: opacity 0.3s, background-color 0.3s;
+    }
+    #page5 .GitHub-button:hover { opacity: 0.7; background-color: rgb(47, 95, 35); box-shadow: 0px 5px 15px rgba(46,164,79,0.4); }
+
+    #page5 .Bootstrap-get {
+      background-color: rgb(121,82,179); color: white; padding: 12px 20px; border-radius: 6px; font-weight: bold; border: none; font-size: 16px;
+      cursor: pointer; transition: opacity 0.3s, background-color 0.3s;
+    }
+    #page5 .Bootstrap-get:hover { opacity: 0.7; background-color: rgb(50, 9, 58); box-shadow: 0px 5px 15px rgba(121,82,179,0.4); }
+
+    #page5 .Bootstrap-download {
+      background-color: rgb(108,117,125); color: white; border: 2px solid rgb(121,82,179); padding: 12px 20px; border-radius: 5px; font-weight: bold; font-size: 16px;
+      cursor: pointer; transition: opacity 0.3s, background-color 0.3s;
+    }
+    #page5 .Bootstrap-download:hover { opacity: 0.7; background-color: black; color: white; box-shadow: 0px 5px 15px rgba(108,117,125,0.4); }
+
+
+    /* -------------------------------------------------------------------------
+       FIXED PAGINATION PANEL (Adopted from Activity 7 Master Portal Layout)
+    ------------------------------------------------------------------------- */
+    .pagination-container {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(25px);
+      padding: 15px 30px;
+      border-radius: 50px;
+      border: 2px solid rgba(255, 252, 137, 0.3);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      z-index: 9999;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    .nav-arrow {
+      background: linear-gradient(45deg, #ff6b9d, #c44569);
+      border: none;
+      color: white;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s;
+    }
+    .nav-arrow:hover {
+      transform: scale(1.1);
+    }
+    .page-numbers {
+      display: flex;
+      gap: 10px;
+    }
+    .page-numbers button {
+      border: none; 
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer; 
+      font-weight: bold;
+      background: #ffffff; 
+      color: #f84291;
+      transition: all 0.2s;
+    }
+    .page-numbers button.active {
+      background: #ffc0dc;
+      color: #ff4f9b;
+      border: 2px solid #ff4f9b;
+      transform: scale(1.15);
+    }
+    .page-numbers button:hover:not(.active) {
+      background: #f38db1;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="page1" class="page">
+    <div class="blog-card">
+      <div class="stars">★ ★ ★ ★ ★ ★ ★ ★ ★</div>
+      <div class="page1-title">
+        <span class="small-text">Welcome to My</span>
+        <span class="big-text">BLOG! ✮⋆˙</span>
+      </div>
+      
+      <div class="login-content">
+        <div class="image-box">
+          <img src="https://i.pinimg.com/originals/9b/d8/90/9bd89050c9b149dfda7bc46e9782fd04.gif" alt="Character Graphic">
+        </div>
+                
+        <form class="login-section" onsubmit="event.preventDefault(); alert('Login submitted!');">
+          <div class="input-box">
+            <input type="text" placeholder="Username" required>
+          </div>
+          <div class="input-box">
+            <input type="password" placeholder="Password" required>
+          </div>
+          <div class="remember-forgot">
+            <label><input type="checkbox"> Remember me</label>
+            <a href="#">Forgot Password?</a>
+          </div>
+          <button type="submit" class="login-btn">Login</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div id="page2" class="page">
+    <div class="box">
+      <div class="hero">
+        <div class="left">
+          <h1>₊✩‧₊˚౨ৎ˚ Master Showcase Hub ౨ৎ˚₊✩‧₊</h1>
+          <div class="arc-text">
+            <span>✨ Creative Web Development Portfolio ✨</span>
+          </div>
+          <p>Explore an immersive compilation of styling implementations, audio interfaces, responsive typography foundations, and interactable UI structures components.</p>
+          <div class="hero-btn-group">
+            <button onclick="alert('☕ Time for a coffee break! ☕')">☕ HAVE COFFEE</button>
+            <button onclick="alert('🎶 Time for your favorite tunes! 🎶')">🎶 LISTEN TO MUSIC</button>
+            <button onclick="alert('💥 Adventure awaits! Let\'s explore! 💥')">💥 EXPLORE ACTIVITIES</button>
+          </div>
+        </div>
+
+        <div class="right-grid">
+          <img src="https://i.pinimg.com/originals/5d/88/5b/5d885b02b804c7f90a5b855aa01d89af.gif" alt="Coffee Vibes">
+          <img src="https://i.pinimg.com/originals/f6/8f/d7/f68fd718cc33d069f8494af14414c47e.gif" alt="Music Magic">
+          <img src="https://i.pinimg.com/originals/88/26/66/882666aa491b2fdc94315672ddeeb8e6.gif" alt="Dance Party">
+          <img src="https://i.pinimg.com/originals/db/39/be/db39bedb96263005c6d1d44701bc5795.gif" alt="Pure Joy">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="page3" class="page">
+    <div class="player">
+      <div class="player-controls">
+        <button class="audio-play-btn" id="playBtn">▶</button>
+      </div>
+      
+      <div class="player-screen">
+        <div class="song-title">Lo-Fi Vibes</div>
+        <div class="artist">Chill Background Track</div>
+        
+        <div class="progress-container">
+          <div class="progress-bg" id="progressBg">
+            <div class="progress-bar" id="progressBar"></div>
+          </div>
+        </div>
+        
+        <div class="volume-container">
+          <span style="color: #c92f7d; font-size: 18px;">🔈</span>
+          <input type="range" class="volume-slider" id="volumeSlider" min="0" max="1" step="0.1" value="0.5">
+          <span style="color: #c92f7d; font-size: 18px;">🔊</span>
+        </div>
+      </div>
+    </div>
+    <audio id="audioTrack" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
+  </div>
+
+  <div id="page4" class="page">
+    <div class="act-header">
+      <h1>₊✩‧₊˚౨ৎ˚₊✩‧₊ ACTIVITY 2 (CSS Basics) ₊✩‧₊˚౨ৎ˚₊✩‧₊</h1>
+    </div>
+    <div class="grid-container">
+      <div class="three-space">
+        <div class="btn-wrapper"><button class="Uber-button">Uber</button></div>
+        <div class="btn-wrapper"><button class="Amazon-button">Add to Cart</button></div>
+        <div class="btn-wrapper"><button class="GitHub-button">Sign up</button></div>
+      </div>
+      <div class="two-space">
+        <div class="btn-wrapper"><button class="Bootstrap-get">Get started</button></div>
+        <div class="btn-wrapper"><button class="Bootstrap-download">Download</button></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="page5" class="page">
+    <div class="act-header">
+      <h1>✮ ⋆ ˚｡𖦹 ⋆｡°✩ ACTIVITY 3 (Effects) ✮ ⋆ ˚｡𖦹 ⋆｡°✩</h1>
+    </div>
+    <div class="grid-container">
+      <div class="three-space">
+        <div class="btn-wrapper"><button class="Uber-button">Uber</button></div>
+        <div class="btn-wrapper"><button class="Amazon-button">Add to Cart</button></div>
+        <div class="btn-wrapper"><button class="GitHub-button">Sign up</button></div>
+      </div>
+      <div class="two-space">
+        <div class="btn-wrapper"><button class="Bootstrap-get">Get started</button></div>
+        <div class="btn-wrapper"><button class="Bootstrap-download">Download</button></div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="pagination-container">
+    <button class="nav-arrow" onclick="navigate(-1)">◀</button>
+    <div class="page-numbers" id="pageNumbers">
+      </div>
+    <button class="nav-arrow" onclick="navigate(1)">▶</button>
+  </div>
+
+
+  <script>
+    // --- Pagination Logic Controller ---
+    let currentPage = 1;
+    const totalPages = 5;
+
+    function showPage(pageIndex) {
+      if (pageIndex < 1 || pageIndex > totalPages) return;
+      currentPage = pageIndex;
+      
+      // Toggle CSS active visibility classes across pages
+      for (let i = 1; i <= totalPages; i++) {
+        const pageEl = document.getElementById('page1' .replace('1', i));
+        if (pageEl) {
+          pageEl.classList.remove('active-page');
+        }
+      }
+      document.getElementById('page' + currentPage).classList.add('active-page');
+      renderPaginationControls();
+    }
+
+    function navigate(direction) {
+      showPage(currentPage + direction);
+    }
+
+    function renderPaginationControls() {
+      const container = document.getElementById('pageNumbers');
+      container.innerHTML = '';
+      for (let i = 1; i <= totalPages; i++) {
+        const btn = document.createElement('button');
+        btn.innerText = i;
+        if (i === currentPage) {
+          btn.classList.add('active');
+        }
+        btn.onclick = () => showPage(i);
+        container.appendChild(btn);
+      }
+    }
+
+    // --- Activity 4 Audio Controller Engine ---
+    const audio = document.getElementById("audioTrack");
+    const playBtn = document.getElementById("playBtn");
+    const progressBg = document.getElementById("progressBg");
+    const progressBar = document.getElementById("progressBar");
+    const volumeSlider = document.getElementById("volumeSlider");
+    let isPlaying = false;
+
+    playBtn.addEventListener('click', () => {
+      if (isPlaying) {
+        audio.pause();
+        playBtn.innerText = '▶';
+      } else {
+        audio.play().catch(err => console.log("Audio play caught/requires interaction:", err));
+        playBtn.innerText = '⏸';
+      }
+      isPlaying = !isPlaying;
+    });
+
+    audio.addEventListener('timeupdate', () => {
+      if (audio.duration) {
+        const percentage = (audio.currentTime / audio.duration) * 100;
+        progressBar.style.width = percentage + '%';
+      }
+    });
+
+    progressBg.addEventListener('click', (e) => {
+      const rect = progressBg.getBoundingClientRect();
+      const clickPosition = (e.clientX - rect.left) / rect.width;
+      audio.currentTime = clickPosition * audio.duration;
+    });
+
+    volumeSlider.addEventListener('input', () => {
+      audio.volume = volumeSlider.value;
+    });
+
+    audio.addEventListener('ended', () => {
+      isPlaying = false;
+      playBtn.innerText = '▶';
+      progressBar.style.width = '0%';
+    });
+
+    // Initialize layout default on load
+    showPage(1);
+  </script>
+</body>
+</html>
